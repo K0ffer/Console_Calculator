@@ -1,4 +1,6 @@
-﻿public class ConsoleCalculator
+﻿using System.ComponentModel.Design;
+
+public class ConsoleCalculator
 {
     public static void Main()
     {
@@ -29,11 +31,10 @@
                         check = true;
                         break;
                     case '/':
-                        Console.WriteLine($"{num1} {oper} {num2} = {num1 / num2}");
-                        check = true;
+                        divide_by_zero_check(num1, num2, oper, check);
                         break;
                     case ':':
-                        Console.WriteLine($"{num1} {oper} {num2} = {num1 / num2}");
+                        divide_by_zero_check(num1, num2, oper, check);
                         check = true;
                         break;
                     default:
@@ -62,5 +63,20 @@
             }
         }
         return numOut;
+    }
+
+    static bool divide_by_zero_check(double num1, double num2, char oper, bool check)
+    {
+        if ((num1 == 0) || (num2 == 0))
+        {
+            Console.WriteLine("Can't divide by zero, enter new operation");
+        }
+        else
+        {
+            Console.WriteLine($"{num1} {oper} {num2} = {num1 / num2}");
+            check = true;
+        }
+
+        return check;
     }
 }
